@@ -1,5 +1,5 @@
 ## Usage
-solid-asset-viewer styles need to be imported at the top of the `pages/_app.ts` (or `.js`) file:
+solid-asset-viewer styles need to be imported, in nextjs this can be done globally at the top of the `pages/_app.ts` (or `.js`) file:
 ```javascript
 import "solid-asset-viewer-react/dist/solid-asset-viewer.css"
 ```
