@@ -1,6 +1,6 @@
 {
   "name": "solid-asset-viewer-react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "solid asset viewer",
   "main": "SolidAssetViewer.js",
   "types": "SolidAssetViewer.d.ts",
