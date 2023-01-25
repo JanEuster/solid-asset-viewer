@@ -84,12 +84,14 @@ export class AssetCollection {
   length: number;
 
   constructor(assets: AnyAsset[]) {
-    this.assets = [new ImageAsset("https://pixy.org/src/21/", "219268.jpg"), new ImageAsset("https://pixy.org/src/487/", "4870083.jpg")];
+    // this.assets = [new ImageAsset("https://pixy.org/src/21/", "219268.jpg"), new ImageAsset("https://pixy.org/src/487/", "4870083.jpg")];
+    this.assets = [];
+    console.log("assets", assets);
     assets.forEach((asset) => {
       if ((asset instanceof ImageAssetSet)) {
-        assets.push(...asset.asArray());
+        this.assets.push(...asset.asArray());
       } else {
-        assets.push(asset);
+        this.assets.push(asset);
       }
     })
 

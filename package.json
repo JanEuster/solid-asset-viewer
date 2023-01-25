@@ -7,6 +7,7 @@
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-watch": "npx tsc -d -t es6 --watch",
     "generate": "npx tsc -d -t es6 && npx eslint --fix SolidAssetViewer.js",
     "pub": "yarn generate && yarn publish"
   },
