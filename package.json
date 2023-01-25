@@ -7,12 +7,19 @@
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "npx tsc SolidAssetViewer.tsx --jsx react-jsxdev -d -t es6"
+    "generate": "npx tsc --jsx react-jsx -d -t es6 && npx eslint --fix SolidAssetViewer.js"
   },
   "author": "janeuster",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0",
     "typescript": "next"
-  }
+  },
+  "files": [
+    "SolidAssetViewer.js",
+    "SolidAssetViewer.d.ts",
+    "dist/",
+    "icons/*.js",
+    "icons/*.d.ts"
+  ]
 }
