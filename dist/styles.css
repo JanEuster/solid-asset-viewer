@@ -143,7 +143,7 @@
 .solid-asset-viewer-inner .solid-asset-viewer-loading {
   width: 100%;
   height: 100%;
-  background-image: url("./loading.gif");
+  background-image: url("../dist/loading.gif");
   background-repeat: repeat;
   background-position: center; 
   background-size: 70px 70px;

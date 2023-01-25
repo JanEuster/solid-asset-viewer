@@ -1,5 +1,4 @@
-
-import "./styles.css"
+import { useEffect, useRef, useState } from "react"
 import DownloadIcon from "./icons/download"
 import CopyrightIcon from "./icons/copyright"
 import InfoIcon from "./icons/info"
@@ -8,7 +7,7 @@ import ArrowLIcon from "./icons/arrow-l"
 import ArrowRIcon from "./icons/arrow-r"
 import ReloadIcon from "./icons/reload"
 import FullscreenIcon from "./icons/fullscreen"
-import { useEffect, useRef, useState } from "react";
+import "./dist/styles.css"
 
 
 abstract class AssetType {
