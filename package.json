@@ -1,0 +1,14 @@
+{
+  "name": "solid-asset-viewer-react",
+  "version": "0.1.0",
+  "description": "solid asset viewer",
+  "main": "SolidAssetViewer.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "janeuster",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
