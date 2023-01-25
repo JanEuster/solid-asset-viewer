@@ -7,8 +7,6 @@ import ArrowLIcon from "./icons/arrow-l"
 import ArrowRIcon from "./icons/arrow-r"
 import ReloadIcon from "./icons/reload"
 import FullscreenIcon from "./icons/fullscreen"
-import "./dist/solid-asset-viewer.module.css"
-
 
 abstract class AssetType {
   path: string;

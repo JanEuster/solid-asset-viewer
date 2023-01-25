@@ -1,13 +1,14 @@
 {
   "name": "solid-asset-viewer-react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "solid asset viewer",
   "main": "SolidAssetViewer.js",
   "types": "SolidAssetViewer.d.ts",
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "npx tsc --jsx react-jsx -d -t es6 && npx eslint --fix SolidAssetViewer.js"
+    "generate": "npx tsc --jsx react-jsx -d -t es6 && npx eslint --fix SolidAssetViewer.js",
+    "pub": "npm run generate && npm publish"
   },
   "author": "janeuster",
   "license": "MIT",
