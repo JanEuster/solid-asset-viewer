@@ -11,10 +11,6 @@
   },
   "author": "janeuster",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "typescript": "next"
-  },
   "files": [
     "SolidAssetViewer.js",
     "SolidAssetViewer.d.ts",

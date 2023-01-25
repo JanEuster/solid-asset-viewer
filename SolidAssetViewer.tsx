@@ -95,7 +95,7 @@ export class AssetCollection {
       }
     })
 
-    this.selectedIndex = 1;
+    this.selectedIndex = 0;
     this.length = this.assets.length
   }
   get selectedFileName() {
