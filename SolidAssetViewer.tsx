@@ -30,10 +30,11 @@ export class ImageAsset extends AssetType {
 }
 
 export class PdfAsset extends AssetType {
-  constructor(path: string) {
-    let splitPath = path.split("/");
-    let name = splitPath[splitPath.length - 1];
-    super(path, name)
+  basePath: string;
+
+  constructor(basePath: string, name: string) {
+    super(basePath + name, name);
+    this.basePath = basePath;
   }
 }
 
