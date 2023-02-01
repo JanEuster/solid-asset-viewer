@@ -116,13 +116,17 @@ export class AssetCollection {
   }
 }
 
+interface SolidAssetViewerProps {
+  src: AnyAsset[];
+  linesBackground?: boolean;
+  previews?: boolean;
+}
+
 export default function SolidAssetViewer({
   src,
   linesBackground = true,
-}: {
-  src: AnyAsset[];
-  linesBackground: boolean;
-}) {
+  previews = true,
+}: SolidAssetViewerProps) {
   const outerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const [ass, setAss] = useState(new AssetCollection(src));
@@ -130,7 +134,7 @@ export default function SolidAssetViewer({
   const [loading, setLoading] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
-  const [showPreviews, setShowPreviews] = useState(true);
+  const [showPreviews, setShowPreviews] = useState(previews);
 
   const select = (value: number) => {
     if (ass.length > 1) {
