@@ -213,6 +213,7 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
       {
         ass.length > 0 ?
           <>
+            <div className="solid-asset-viewer-main">
             <div className="solid-asset-viewer-overlay">
               <div className="solid-asset-viewer-info_boxes">
                 <div style={{ left: "5%" }} data-open={String(filesMenuOpen)}>
@@ -270,6 +271,7 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
                 </div>
               </div>
             </div>
+            </div>
             {
               showPreviews ? 
               <SAVPreviews ass={ass} />
@@ -285,20 +287,14 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
 
 
 function SAVPreviews({ ass }: { ass: AssetCollection }) {
-  const previewsRef = useRef(null);
+  const previewsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.onresize = () => {
-      
-    }
-  
-    return () => {
-    
-    }
-  }, [])
+  if (previewsRef.current) {
+    previewsRef.current.style.transform = `translateX(${-120 * ass.selectedIndex}px)`;
+  }
 
   const previews = ass.assets.map((asset, i) => {
-    return       <div key={i} className="solid-asset-viewer-preview">
+    return       <div key={i} className={"solid-asset-viewer-preview" + (i === ass.selectedIndex ? " solid-asset-viewer-preview-selected" : "")}>
                         {
                     asset instanceof ImageAsset ?
                       <img src={asset.path} draggable={false} placeholder="empty" alt={asset.name} />
@@ -313,8 +309,10 @@ function SAVPreviews({ ass }: { ass: AssetCollection }) {
   })
   
   return (
-    <div ref={previewsRef} className="solid-asset-viewer-previews">
-      {previews}
+    <div className="solid-asset-viewer-previews">
+      <div ref={previewsRef}>
+        {previews}
+      </div>
     </div>
   )
 }

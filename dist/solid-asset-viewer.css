@@ -10,6 +10,12 @@
   background-color: black;
 }
 
+.solid-asset-viewer-main {
+  height: 100%;
+  max-height: calc(100% - 100px);
+  position:relative;
+}
+
 .solid-asset-viewer-background {
   background-image: url("../dist/pattern.png");
   background-repeat: repeat;
@@ -199,28 +205,43 @@
 
 .solid-asset-viewer-previews {
   width: 100%;
-  height: 140px;
+  min-height: 100px;
+  max-height: 100px;
   background-color: #1c1c1c;
   z-index: 1;
   padding: 10px;
   box-sizing: border-box;
+
+}
+
+.solid-asset-viewer-previews > div {
+  width: 100%;
+  height: 100%;
   display: flex;
 }
+
 
 .solid-asset-viewer-preview {
   background-color: black;
   height: 100%;
-  max-width: 140px;
-  min-width: 140px;
+  min-width: 110px;
+  max-width: 110px;
   border: 1px solid white;
   margin: 0 5px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  user-select: none;
 }
 
 .solid-asset-viewer-preview img {
   max-width: 100%;
   max-height: 100%;
+  opacity: 0.65;
+}
+
+.solid-asset-viewer-preview-selected img {
+  opacity: 1;
 }
