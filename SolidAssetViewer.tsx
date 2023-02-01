@@ -285,7 +285,6 @@ export default function SolidAssetViewer({
                         id={asset.name}
                         name="viewedFile"
                         value={i}
-                        defaultChecked={i === ass.selectedIndex ? true : false}
                         checked={i === ass.selectedIndex ? true : false}
                       />
                       <label htmlFor={asset.name}>{asset.name}</label>
