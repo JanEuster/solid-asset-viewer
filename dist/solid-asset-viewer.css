@@ -12,8 +12,8 @@
 
 .solid-asset-viewer-main {
   height: 100%;
-  max-height: calc(100% - 100px);
   position: relative;
+  user-select: none;
 }
 
 .solid-asset-viewer-background {

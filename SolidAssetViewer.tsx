@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import DownloadIcon from "./icons/download";
 import CopyrightIcon from "./icons/copyright";
 import InfoIcon from "./icons/info";
+import PreviewsIcon from "./icons/previews";
 import ListIcon from "./icons/list";
 import ArrowLIcon from "./icons/arrow-l";
 import ArrowRIcon from "./icons/arrow-r";
@@ -268,7 +269,10 @@ export default function SolidAssetViewer({
     >
       {ass.length > 0 ? (
         <>
-          <div className="solid-asset-viewer-main">
+          <div
+            className="solid-asset-viewer-main"
+            style={{ maxHeight: showPreviews ? "calc(100% - 100px)" : "100%" }}
+          >
             <div className="solid-asset-viewer-overlay">
               <div className="solid-asset-viewer-info_boxes">
                 <div style={{ left: "5%" }} data-open={String(filesMenuOpen)}>
@@ -329,6 +333,15 @@ export default function SolidAssetViewer({
                   <span data-tooltip={ass.currentAsset.name}>
                     <div>
                       <InfoIcon />
+                    </div>
+                  </span>
+                  <span
+                    onClick={() => setShowPreviews(!showPreviews)}
+                    data-tooltip="Toggle Previews"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div>
+                      <PreviewsIcon />
                     </div>
                   </span>
                   <span
