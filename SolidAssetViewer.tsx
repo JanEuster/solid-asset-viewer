@@ -434,6 +434,7 @@ function SAVPreviews({
             ? " solid-asset-viewer-preview-selected"
             : "")
         }
+        title={asset.name}
         onClick={(e) => {
           setSelected(i);
           e.stopPropagation();
