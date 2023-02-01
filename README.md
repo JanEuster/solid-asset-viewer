@@ -2,7 +2,7 @@
 # solid-asset-viewer
 React Component for Viewing a Set of Images, PDFs and Videos.
 
-![Demonstration of solid-asset-viewer](demo.gif "Demo")
+![Demonstration of solid-asset-viewer](./demo.gif "Demo")
 
 ## Usage
 solid-asset-viewer styles need to be imported, in nextjs this can be done globally at the top of the `pages/_app.ts` (or `.js`) file:
