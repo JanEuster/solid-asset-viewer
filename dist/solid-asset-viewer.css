@@ -10,6 +10,13 @@
   background-color: black;
 }
 
+.solid-asset-viewer-background {
+  background-image: url("../dist/pattern.png");
+  background-repeat: repeat;
+  background-position: center; 
+  background-size: 20px 20px;
+}
+
 .solid-asset-viewer-overlay {
   position: absolute;
   width: 100%;

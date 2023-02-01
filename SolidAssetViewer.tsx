@@ -121,7 +121,7 @@ export class AssetCollection {
 
 
 
-export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
+export default function SolidAssetViewer({ src, linesBackground = true }: { src: AnyAsset[], linesBackground: boolean }) {
   const outerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const [ass, setAss] = useState(new AssetCollection(src))
@@ -209,7 +209,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
     document.body.removeChild(link);
   }
   return (
-    <div ref={outerRef} className="solid-asset-viewer-wrapper" style={fullscreen ? { position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 99999999 } : undefined}>
+    <div ref={outerRef} className={"solid-asset-viewer-wrapper" + (linesBackground ? " solid-asset-viewer-background" : "")} style={fullscreen ? { position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 99999999 } : undefined}>
       {
         ass.length > 0 ?
           <>
