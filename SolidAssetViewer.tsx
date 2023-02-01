@@ -280,6 +280,7 @@ export default function SolidAssetViewer({
                     <li key={i}>
                       <input
                         onClick={() => select(i)}
+                        onChange={() => select(i)}
                         type="radio"
                         id={asset.name}
                         name="viewedFile"
