@@ -105,7 +105,6 @@ export class AssetCollection {
     return this.assets[this.selectedIndex].path
   }
   get toolbarInfo() {
-    console.log(this.assets, this.selectedIndex, this.length);
     return String(this.selectedIndex + 1) + " of " + this.length + " | " + this.assets[this.selectedIndex].name
   }
   get currentAsset() {
@@ -129,6 +128,7 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
   const [loading, setLoading] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
+  const [showPreviews, setShowPreviews] = useState(true);
 
   const select = (value: number) => {
     if (ass.length > 1) {
@@ -261,7 +261,7 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
                     ass.currentAsset instanceof ImageAsset ?
                       <img src={ass.currentAsset.path} onLoad={() => setLoading(false)} draggable={false} placeholder="empty" alt={ass.currentAsset.name} />
                       : ass.currentAsset instanceof VideoEmbedAsset || ass.currentAsset instanceof PdfAsset ?
-                        <iframe className="solid-asset-viewer-video" src={ass.currentAsset.path} onLoad={() => setLoading(false)} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+                        <iframe className="solid-asset-viewer-video" title={ass.currentAsset.name} src={ass.currentAsset.path} onLoad={() => setLoading(false)} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
                         : ass.currentAsset instanceof VideoSrcAsset ?
                           <video width="200" height="200" controls src={ass.currentAsset.path} className="solid-asset-viewer-video" onLoad={() => setLoading(false)}>
                           </video>
@@ -270,10 +270,51 @@ export default function SolidAssetViewer({ src, linesBackground = true }: { src:
                 </div>
               </div>
             </div>
+            {
+              showPreviews ? 
+              <SAVPreviews ass={ass} />
+              : null
+            }
           </>
           : null
       }
 
+    </div>
+  )
+}
+
+
+function SAVPreviews({ ass }: { ass: AssetCollection }) {
+  const previewsRef = useRef(null);
+
+  useEffect(() => {
+    document.onresize = () => {
+      
+    }
+  
+    return () => {
+    
+    }
+  }, [])
+
+  const previews = ass.assets.map((asset, i) => {
+    return       <div key={i} className="solid-asset-viewer-preview">
+                        {
+                    asset instanceof ImageAsset ?
+                      <img src={asset.path} draggable={false} placeholder="empty" alt={asset.name} />
+                      : asset instanceof VideoEmbedAsset || asset instanceof PdfAsset ?
+                        <iframe className="solid-asset-viewer-video" title={asset.name} src={asset.path} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+                        : asset instanceof VideoSrcAsset ?
+                          <video width="200" height="200" controls src={asset.path} className="solid-asset-viewer-video">
+                          </video>
+                          : null
+                  }
+  </div>
+  })
+  
+  return (
+    <div ref={previewsRef} className="solid-asset-viewer-previews">
+      {previews}
     </div>
   )
 }
