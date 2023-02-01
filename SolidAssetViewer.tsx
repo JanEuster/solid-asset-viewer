@@ -257,16 +257,12 @@ export default function SolidAssetViewer({
                   {ass.assets.map((asset, i) => (
                     <li key={i}>
                       <input
-                        onClick={(e) =>
-                          select(parseInt((e.target as HTMLInputElement).value))
-                        }
+                        onClick={() => select(i)}
                         type="radio"
                         id={asset.name}
                         name="viewedFile"
                         value={i}
-                        defaultChecked={
-                          asset.name == ass.selectedFileName ? true : false
-                        }
+                        defaultChecked={i === ass.selectedIndex ? true : false}
                       />
                       <label htmlFor={asset.name}>{asset.name}</label>
                     </li>
