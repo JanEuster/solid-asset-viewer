@@ -154,6 +154,7 @@ export default function SolidAssetViewer({
   const [fullscreen, setFullscreen] = useState(false);
   const [mouseDown, setMouseDown] = useState(false);
   const [showPreviews, setShowPreviews] = useState(previews);
+  const [show, setShow] = useState(false);
 
   const select = (value: number) => {
     if (ass.length > 1) {
@@ -171,6 +172,8 @@ export default function SolidAssetViewer({
     let translate = [0, 0];
     let startOffset = [0, 0];
     let isMouseDown = false;
+
+    setTimeout(() => setShow(true), 50);
 
     const apply = () => {
       if (innerRef.current) {
@@ -401,37 +404,48 @@ export default function SolidAssetViewer({
               className="solid-asset-viewer-inner"
               style={mouseDown ? { cursor: "grabbing" } : {}}
             >
-              <div className={loading ? "solid-asset-viewer-loading" : ""}>
-                <div className="solid-asset-viewer-loading_inner">
-                  {ass.currentAsset instanceof ImageAsset ? (
-                    <img
-                      src={ass.currentAsset.path}
-                      onLoad={() => setLoading(false)}
-                      draggable={false}
-                      placeholder="empty"
-                      alt={ass.currentAsset.name}
-                    />
-                  ) : ass.currentAsset instanceof VideoEmbedAsset ||
-                    ass.currentAsset instanceof PdfAsset ? (
-                    <iframe
-                      className="solid-asset-viewer-video"
-                      title={ass.currentAsset.name}
-                      src={ass.currentAsset.path}
-                      onLoad={() => setLoading(false)}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    />
-                  ) : ass.currentAsset instanceof VideoSrcAsset ? (
-                    <video
-                      width="200"
-                      height="200"
-                      controls
-                      src={ass.currentAsset.path}
-                      className="solid-asset-viewer-video"
-                      onLoad={() => setLoading(false)}
-                    ></video>
-                  ) : null}
+              {show ? (
+                <div className={loading ? "solid-asset-viewer-loading" : ""}>
+                  <div className="solid-asset-viewer-loading_inner">
+                    {ass.currentAsset instanceof ImageAsset ? (
+                      <img
+                        onLoad={(e) => {
+                          setLoading(false);
+                          console.log("load", ass.currentAsset.name, e);
+                        }}
+                        src={ass.currentAsset.path}
+                        draggable={false}
+                        placeholder="empty"
+                        alt={ass.currentAsset.name}
+                      />
+                    ) : ass.currentAsset instanceof VideoEmbedAsset ||
+                      ass.currentAsset instanceof PdfAsset ? (
+                      <iframe
+                        className="solid-asset-viewer-video"
+                        title={ass.currentAsset.name}
+                        onLoad={(e) => {
+                          setLoading(false);
+                          console.log("load", ass.currentAsset.name, e);
+                        }}
+                        src={ass.currentAsset.path}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      />
+                    ) : ass.currentAsset instanceof VideoSrcAsset ? (
+                      <video
+                        width="200"
+                        height="200"
+                        controls
+                        onLoad={(e) => {
+                          setLoading(false);
+                          console.log("load", ass.currentAsset.name, e);
+                        }}
+                        src={ass.currentAsset.path}
+                        className="solid-asset-viewer-video"
+                      ></video>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
           {showPreviews ? <SAVPreviews ass={ass} setSelected={select} /> : null}
