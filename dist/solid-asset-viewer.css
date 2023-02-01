@@ -137,6 +137,7 @@
 .solid-asset-viewer-inner {
   width: 100%;
   height: 100%;
+  cursor: grab;
   /* position: relative; */
 }
 

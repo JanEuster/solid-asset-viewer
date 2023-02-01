@@ -128,6 +128,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
   const [filesMenuOpen, setFilesMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
+  const [mouseDown, setMouseDown] = useState(false);
 
   const select = (value: number) => {
     if (ass.length > 1) {
@@ -144,7 +145,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
     let scale = 1
     let translate = [0, 0]
     let startOffset = [0, 0]
-    let isMouseDown = false
+    let isMouseDown = false;
 
     const apply = () => {
       if (innerRef.current) {
@@ -177,15 +178,15 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
     }
     let outer = outerRef.current;
     outer?.addEventListener("wheel", setScale);
-    outer?.addEventListener("mousedown", (e) => { startOffset = [e.clientX, e.clientY]; isMouseDown = true })
+    outer?.addEventListener("mousedown", (e) => { startOffset = [e.clientX, e.clientY]; setMouseDown(true); isMouseDown = true })
     outer?.addEventListener("mousemove", setTranslate)
-    outer?.addEventListener("mouseup", () => isMouseDown = false)
+    outer?.addEventListener("mouseup", () => {setMouseDown(false); isMouseDown = false})
     window.addEventListener("sav-reset-view", resetView)
     return () => {
       outer?.removeEventListener("wheel", setScale);
-      outer?.removeEventListener("mousedown", (e) => { startOffset = [e.clientX, e.clientY]; isMouseDown = true })
+      outer?.removeEventListener("mousedown", (e) => { startOffset = [e.clientX, e.clientY]; setMouseDown(true); isMouseDown = true })
       outer?.removeEventListener("mousemove", setTranslate)
-      outer?.removeEventListener("mouseup", () => isMouseDown = false)
+      outer?.removeEventListener("mouseup", () => {setMouseDown(false); isMouseDown = false})
       window.removeEventListener("sav-reset-view", resetView)
     }
   }, [])
@@ -253,7 +254,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
                 <div onClick={() => select(ass.selectedIndex + 1)} style={{ display: "flex", width: 30 }}> <ArrowRIcon /></div>
               </button>
             </div>
-            <div ref={innerRef} className="solid-asset-viewer-inner">
+            <div ref={innerRef} className="solid-asset-viewer-inner" style={mouseDown ? {cursor: "grabbing"} : {}}>
               <div className={loading ? "solid-asset-viewer-loading" : ""}>
                 <div className="solid-asset-viewer-loading_inner">
                   {
