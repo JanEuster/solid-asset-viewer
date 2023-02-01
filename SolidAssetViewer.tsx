@@ -402,14 +402,20 @@ export default function SolidAssetViewer({
               </div>
             </div>
           </div>
-          {showPreviews ? <SAVPreviews ass={ass} /> : null}
+          {showPreviews ? <SAVPreviews ass={ass} setSelected={select} /> : null}
         </>
       ) : null}
     </div>
   );
 }
 
-function SAVPreviews({ ass }: { ass: AssetCollection }) {
+function SAVPreviews({
+  ass,
+  setSelected,
+}: {
+  ass: AssetCollection;
+  setSelected: Function;
+}) {
   const previewsRef = useRef<HTMLDivElement>(null);
 
   if (previewsRef.current) {
@@ -428,6 +434,10 @@ function SAVPreviews({ ass }: { ass: AssetCollection }) {
             ? " solid-asset-viewer-preview-selected"
             : "")
         }
+        onClick={(e) => {
+          setSelected(i);
+          e.stopPropagation();
+        }}
       >
         {asset instanceof ImageAsset ? (
           <img
@@ -458,7 +468,15 @@ function SAVPreviews({ ass }: { ass: AssetCollection }) {
 
   return (
     <div className="solid-asset-viewer-previews">
-      <div ref={previewsRef}>{previews}</div>
+      <div ref={previewsRef}>
+        {previews}
+        <div
+          className="solid-asset-viewer-preview solid-asset-viewer-preview-selected"
+          onClick={() => setSelected(0)}
+        >
+          <ReloadIcon />
+        </div>
+      </div>
     </div>
   );
 }
