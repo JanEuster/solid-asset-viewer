@@ -39,7 +39,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2px;
+  padding: 2px 3px;
+  box-sizing: border-box;
 }
 .solid-asset-viewer-toolbar svg {
   opacity: 0.7;

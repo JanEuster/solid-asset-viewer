@@ -209,7 +209,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
     document.body.removeChild(link);
   }
   return (
-    <div ref={outerRef} className="solid-asset-viewer-wrapper" style={fullscreen ? { position: "absolute", top: -20, left: -20, width: "100vw", height: "100vh", zIndex: 99999999 } : undefined}>
+    <div ref={outerRef} className="solid-asset-viewer-wrapper" style={fullscreen ? { position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 99999999 } : undefined}>
       {
         ass.length > 0 ?
           <>
@@ -243,7 +243,7 @@ export default function SolidAssetViewer({ src }: { src: AnyAsset[] }) {
                     <span onClick={download} data-tooltip="Download Asset"><div><DownloadIcon /></div></span>
                     : null
                   }
-                  <span data-tooltip="Solid Asset Viewer by Jan Eusterschulte. Currently Private"><div><CopyrightIcon /></div></span>
+                  <span data-tooltip="solid-asset-viewer-react on npm --- MIT License --- Jan Eusterschulte"><div><CopyrightIcon /></div></span>
                   <span data-tooltip="Fullscreen Viewer" style={{ cursor: "pointer" }} onClick={() => setFullscreen(!fullscreen)}><div><FullscreenIcon /></div></span>
                 </div>
               </div>
