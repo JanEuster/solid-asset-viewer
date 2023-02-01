@@ -16,6 +16,9 @@ abstract class AssetType {
     this.path = path;
     this.name = name;
   }
+  get typeString(): string {
+    return "abstract";
+  }
 }
 export class ImageAsset extends AssetType {
   basePath: string;
@@ -27,6 +30,9 @@ export class ImageAsset extends AssetType {
   get nameWithoutExtension(): string {
     return this.name.split(".")[0];
   }
+  get typeString(): string {
+    return "Image";
+  }
 }
 
 export class PdfAsset extends AssetType {
@@ -36,11 +42,17 @@ export class PdfAsset extends AssetType {
     super(basePath + name, name);
     this.basePath = basePath;
   }
+  get typeString(): string {
+    return "PDF";
+  }
 }
 
 export class VideoEmbedAsset extends AssetType {
   constructor(name: string, path: string) {
     super(path, name);
+  }
+  get typeString(): string {
+    return "Video Embed";
   }
 }
 export class VideoSrcAsset extends AssetType {
@@ -49,6 +61,9 @@ export class VideoSrcAsset extends AssetType {
   constructor(name: string, path: string, type: string) {
     super(path, name);
     this.type = type;
+  }
+  get typeString(): string {
+    return "Video Source";
   }
 }
 
@@ -68,6 +83,9 @@ export class ImageAssetSet {
       arr.push(new ImageAsset(this.basePath, name));
     }
     return arr;
+  }
+  get typeString(): string {
+    return "Image Set";
   }
 }
 
@@ -448,21 +466,17 @@ function SAVPreviews({
             placeholder="empty"
             alt={asset.name}
           />
-        ) : asset instanceof VideoEmbedAsset || asset instanceof PdfAsset ? (
-          <iframe
-            className="solid-asset-viewer-video"
-            title={asset.name}
-            src={asset.path}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          />
-        ) : asset instanceof VideoSrcAsset ? (
-          <video
-            width="200"
-            height="200"
-            controls
-            src={asset.path}
-            className="solid-asset-viewer-video"
-          ></video>
+        ) : asset instanceof VideoEmbedAsset ||
+          asset instanceof PdfAsset ||
+          asset instanceof VideoSrcAsset ? (
+          <>
+            <span className="solid-asset-viewer-preview-text">
+              {asset.name}
+            </span>
+            <span className="solid-asset-viewer-preview-type">
+              {asset.typeString}
+            </span>
+          </>
         ) : null}
       </div>
     );

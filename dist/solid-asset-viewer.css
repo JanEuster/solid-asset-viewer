@@ -255,6 +255,8 @@
 
   user-select: none;
   cursor: pointer;
+
+  position: relative;
 }
 
 .solid-asset-viewer-preview img {
@@ -265,4 +267,25 @@
 
 .solid-asset-viewer-preview-selected img {
   opacity: 1;
+}
+
+.solid-asset-viewer-preview-text,
+.solid-asset-viewer-preview-type {
+  position: absolute;
+  display: block;
+  color: white;
+  box-sizing: border-box;
+}
+
+.solid-asset-viewer-preview-text {
+  font-size: 12px;
+  padding: 4px;
+  font-style: italic;
+}
+
+.solid-asset-viewer-preview-type {
+  opacity: 0.4;
+  font-size: 26px;
+  box-sizing: border-box;
+  font-weight: 900;
 }
