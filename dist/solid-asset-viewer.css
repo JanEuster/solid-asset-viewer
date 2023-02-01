@@ -225,6 +225,7 @@
 
 .solid-asset-viewer-previews {
   width: 100%;
+  height: 100px;
   min-height: 100px;
   max-height: 100px;
   background-color: #1c1c1c;
