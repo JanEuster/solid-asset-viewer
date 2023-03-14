@@ -260,13 +260,13 @@ export default function SolidAssetViewer({
       style={
         fullscreen
           ? {
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              zIndex: 99999999,
-            }
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 99999999,
+          }
           : undefined
       }
     >
@@ -465,9 +465,8 @@ function SAVPreviews({
   const previewsRef = useRef<HTMLDivElement>(null);
 
   if (previewsRef.current) {
-    previewsRef.current.style.transform = `translateX(${
-      -120 * ass.selectedIndex
-    }px)`;
+    previewsRef.current.style.transform = `translateX(${-120 * ass.selectedIndex
+      }px)`;
   }
 
   const previews = ass.assets.map((asset, i) => {
