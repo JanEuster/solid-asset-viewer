@@ -157,11 +157,16 @@ export default function SolidAssetViewer({
   const [show, setShow] = useState(false);
 
   const select = (value: number) => {
-    if (ass.length > 1) {
+    if (ass.length > 1 && value != ass.selectedIndex) {
       if (value < 0) {
         value = ass.length + value;
       }
       setLoading(true);
+      if (
+        JSON.stringify(ass.currentAsset) == JSON.stringify(ass.assets[value])
+      ) {
+        setTimeout(() => setLoading(false), 10);
+      }
       ass.setSelected = value % ass.length;
     }
     setAss(ass);
